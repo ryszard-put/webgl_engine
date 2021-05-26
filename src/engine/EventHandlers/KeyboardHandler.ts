@@ -1,9 +1,9 @@
-import { PerspectiveCamera } from '../Camera';
+import { SphericalCamera } from '../Cameras';
 
 export class KeyboardHandler {
-  private _camera: PerspectiveCamera;
+  private _camera: SphericalCamera;
 
-  constructor(camera: PerspectiveCamera) {
+  constructor(camera: SphericalCamera) {
     this._camera = camera;
     this.applyEventListeners();
   }

@@ -1,7 +1,7 @@
-import { PerspectiveCamera } from '../Camera';
+import { SphericalCamera } from '../Cameras';
 
 export class MouseHandler {
-  private _camera: PerspectiveCamera;
+  private _camera: SphericalCamera;
   private _recording: boolean
   private _lastPosition: {
     x: number,
@@ -9,10 +9,10 @@ export class MouseHandler {
   }
   private _canvas: HTMLCanvasElement | OffscreenCanvas;
 
-  constructor(camera: PerspectiveCamera) {
+  constructor(camera: SphericalCamera, canvas: HTMLCanvasElement | OffscreenCanvas) {
     this._camera = camera;
     this._recording = false;
-    this._canvas = this._camera.main.renderer.gl.canvas;
+    this._canvas = canvas;
     this._lastPosition = {
       x: 0,
       y: 0
@@ -40,5 +40,15 @@ export class MouseHandler {
         this._camera.handleSwipe(diffX / this._canvas.width, diffY / this._canvas.height);
       }
     });
+
+    this._canvas.addEventListener("wheel", (e: WheelEvent) => {
+      if(e.deltaY < 0)
+        // Zoom in
+        this._camera.zoomIn(1);
+      else if(e.deltaY > 0)
+        // Zoom out
+        this._camera.zoomOut(1);
+      console.log(this._camera.radius)
+    })
   }
 }

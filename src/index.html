@@ -7,6 +7,18 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="container">
+    <div id="canvas-parent"><canvas id="webgl_canvas"></canvas></div>
+    <div id="sidebar">
+      <div class="title">File Select</div>
+      <div class="content">
+        <select name="file" id="file-select"></select>
+        <select name="game-number" id="game-number-select"></select>
+      </div>
+      <div class="title">Game Information</div>
+      <div class="content" id="info"></div>
+    </div>
+  </div>
   <script src="./main.ts"></script>
 </body>
 </html>
